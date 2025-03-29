@@ -291,9 +291,9 @@
 		cardsContainer.appendChild(cardElement);
 	  });
 	}
-	async function fetchInsight(question, cards) {
-    const response = await fetch('https://tarot-backend.onrender.com/get-insight', { 
 
+	async function fetchInsight(question, cards) {
+		const response = await fetch('https://tarotreading-1.onrender.com/get-insight', { 
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ question, cards })

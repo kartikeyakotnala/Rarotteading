@@ -381,20 +381,27 @@
     
     <h1>🌙 Tarot Reading ✨</h1>
 
-    <div class="quick-access">
-        <button onclick="setQuestion('What does my future hold?'); performReading();">🔮 What does my future hold?</button>
-        <button onclick="setQuestion('What should I focus on today?'); performReading();">🌟 What should I focus on today?</button>
-        <button onclick="setQuestion('How can I find love?'); performReading();">❤️ How can I find love?</button>
-    </div>
+	<section id='prompt_section'>
+		<div class="quick-access">
+			<button onclick="setQuestion('What does my future hold?'); performReading();">🔮 What does my future hold?</button>
+			<button onclick="setQuestion('What should I focus on today?'); performReading();">🌟 What should I focus on today?</button>
+			<button onclick="setQuestion('How can I find love?'); performReading();">❤️ How can I find love?</button>
+		</div>
 
-	<input type="text" id="question" placeholder="Enter your question here...">
-	<button onclick="performReading()">Get Reading</button>
-	<div id="cards" class="card-wrapper"></div>
-	<div id="insight"></div>
-
+		<input type="text" id="question" placeholder="Enter your question here...">
+		<button onclick="performReading()">Get Reading</button>
+	</section>	
+	
+	<section id='cards_section'>
+		<div id="cards" class="card-wrapper"></div>
+	</section>	
+	
+	<section id='insight_section'>
+		<div id="insight"></div>
+	</section>
+	
 	<script>
-	const cardImages = ['Cups01.jpg', 'Cups02.jpg', 'Cups03.jpg', 'Cups04.jpg', 'Cups05.jpg', 'Cups06.jpg', 'Cups07.jpg', 'Cups08.jpg', 'Cups09.jpg', 'Cups10.jpg', 'Cups11.jpg', 'Cups12.jpg', 'Cups13.jpg', 'Cups14.jpg', 'Death.jpg', 'Judgement.jpg', 'Justice.jpg', 'Pentacles01.jpg', 'Pentacles02.jpg', 'Pentacles03.jpg', 'Pentacles04.jpg', 'Pentacles05.jpg', 'Pentacles06.jpg', 'Pentacles07.jpg', 'Pentacles08.jpg', 'Pentacles09.jpg', 'Pentacles10.jpg', 'Pentacles11.jpg', 'Pentacles12.jpg', 'Pentacles13.jpg', 'Pentacles14.jpg', 'Strength.jpg', 'Swords01.jpg', 'Swords02.jpg', 'Swords03.jpg', 'Swords04.jpg', 'Swords05.jpg', 'Swords06.jpg', 'Swords07.jpg', 'Swords08.jpg', 'Swords09.jpg', 'Swords10.jpg', 'Swords11.jpg', 'Swords12.jpg', 'Swords13.jpg', 'Swords14.jpg', 'Temperance.jpg', 'TheChariot.jpg', 'TheDevil.jpg', 'TheEmperor.jpg', 'TheEmpress.jpg', 'TheFool.jpg', 'TheHangedMan.jpg', 'TheHermit.jpg', 'TheHierophant.jpg', 'TheHighPriestess.jpg', 'TheLovers.jpg', 'TheMagician.jpg', 'TheMoon.jpg', 'TheStar.jpg', 'TheSun.jpg', 'TheTower.jpg', 'TheWorld.jpg', 'Wands01.jpg', 'Wands02.jpg', 'Wands03.jpg', 'Wands04.jpg', 'Wands05.jpg', 'Wands06.jpg', 'Wands07.jpg', 'Wands08.jpg', 'Wands09.jpg', 'Wands10.jpg', 'Wands11.jpg', 'Wands12.jpg', 'Wands13.jpg', 'Wands14.jpg', 'WheelOfFortune.jpg']; // Replace with actual image filenames
-
+	const cardImages = ['Ace of Cups.jpg', 'Ace of Pentacles.jpg', 'Ace of Swords.jpg', 'Ace of Wands.jpg', 'Death.jpg', 'Eight of Cups.jpg', 'Eight of Pentacles.jpg', 'Eight of Swords.jpg', 'Eight of Wands.jpg', 'Eleven of Cups.jpg', 'Eleven of Pentacles.jpg', 'Eleven of Swords.jpg', 'Eleven of Wands.jpg', 'Five of Cups.jpg', 'Five of Pentacles.jpg', 'Five of Swords.jpg', 'Five of Wands.jpg', 'Four of Cups.jpg', 'Four of Pentacles.jpg', 'Four of Swords.jpg', 'Four of Wands.jpg', 'Fourteen of Cups.jpg', 'Fourteen of Pentacles.jpg', 'Fourteen of Swords.jpg', 'Fourteen of Wands.jpg', 'Judgement.jpg', 'Justice.jpg', 'Nine of Cups.jpg', 'Nine of Pentacles.jpg', 'Nine of Swords.jpg', 'Nine of Wands.jpg', 'Seven of Cups.jpg', 'Seven of Pentacles.jpg', 'Seven of Swords.jpg', 'Seven of Wands.jpg', 'Six of Cups.jpg', 'Six of Pentacles.jpg', 'Six of Swords.jpg', 'Six of Wands.jpg', 'Strength.jpg', 'Temperance.jpg', 'Ten of Cups.jpg', 'Ten of Pentacles.jpg', 'Ten of Swords.jpg', 'Ten of Wands.jpg', 'TheChariot.jpg', 'TheDevil.jpg', 'TheEmperor.jpg', 'TheEmpress.jpg', 'TheFool.jpg', 'TheHangedMan.jpg', 'TheHermit.jpg', 'TheHierophant.jpg', 'TheHighPriestess.jpg', 'TheLovers.jpg', 'TheMagician.jpg', 'TheMoon.jpg', 'TheStar.jpg', 'TheSun.jpg', 'TheTower.jpg', 'TheWorld.jpg', 'Thirteen of Cups.jpg', 'Thirteen of Pentacles.jpg', 'Thirteen of Swords.jpg', 'Thirteen of Wands.jpg', 'Three of Cups.jpg', 'Three of Pentacles.jpg', 'Three of Swords.jpg', 'Three of Wands.jpg', 'Twelve of Cups.jpg', 'Twelve of Pentacles.jpg', 'Twelve of Swords.jpg', 'Twelve of Wands.jpg', 'Two of Cups.jpg', 'Two of Pentacles.jpg', 'Two of Swords.jpg', 'Two of Wands.jpg', 'WheelOfFortune.jpg']
 	document.addEventListener("DOMContentLoaded", () => {
 		const now = new Date();
 		const hour = now.getHours();

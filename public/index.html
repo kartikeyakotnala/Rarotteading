@@ -219,29 +219,21 @@
 			opacity: 1;
 		}
 	}
-	
-	@keyframes card-shimmer {
-	  0% {
-		background-position: -200% 0;
-	  }
-	  100% {
-		background-position: 200% 0;
-	  }
-	}
 
 
 	.card {
-		flex: 1 1 calc(33.333% - 5px); /* Three cards per row with gap accounted */
-		max-width: 160px;
-		aspect-ratio: 1.6 / 3;
-		perspective: 1000px;
-		cursor: pointer;
-		border-radius: 10px;
-		transition: transform 2s ease;
-		box-sizing: border-box;
-		position: relative;
-		overflow: hidden;
-		scroll-snap-align: start;
+	  position: relative;
+	  flex: 1 1 calc(33.333% - 5px);
+	  max-width: 160px;
+	  aspect-ratio: 1.6 / 3;
+	  perspective: 1000px;
+	  cursor: pointer;
+	  border-radius: 10px;
+	  overflow: visible; /* Allow tooltip to overflow */
+	  transition: transform 2s ease;
+	  box-sizing: border-box;
+	  scroll-snap-align: start;
+	  z-index: 1;
 	}
 
 
@@ -273,44 +265,53 @@
 	.card-back {
 		transform: rotateY(180deg);
 	}
-	
+		
 	.card::before {
 	  content: '';
 	  position: absolute;
 	  top: 0; left: 0; right: 0; bottom: 0;
-	  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+	  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.12), transparent);
 	  background-size: 200% 100%;
-	  animation: card-shimmer 3s infinite;
+	  animation: card-shimmer 3s infinite linear;
 	  pointer-events: none;
-	  z-index: 2;
 	  border-radius: 10px;
-	}
-	
-	.card::after {
-		content: attr(data-tooltip);
-		position: absolute;
-		bottom: -40px;
-		left: 50%;
-		transform: translateX(-50%);
-		white-space: nowrap;
-		font-size: 14px;
-		font-weight: 500;
-		padding: 6px 12px;
-		border-radius: 6px;
-		background: linear-gradient(120deg, #f0f0f0 30%, #cccccc 50%, #f0f0f0 70%);
-		background-size: 200% 100%;
-		color: #121212;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 0.3s ease, transform 0.3s ease;
-		z-index: 10;
-		box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
-		animation: shimmer-tooltip 2s infinite linear;
+	  z-index: 2; /* Ensure shimmer is above card base */
 	}
 
+	.card::after {
+	  content: attr(data-tooltip);
+	  position: absolute;
+	  bottom: -42px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  white-space: nowrap;
+	  font-size: 14px;
+	  font-weight: 600;
+	  padding: 6px 12px;
+	  border-radius: 6px;
+	  background: linear-gradient(120deg, #f8f8f8 30%, #cccccc 50%, #eeeeee 70%);
+	  background-size: 200% 100%;
+	  color: #121212;
+	  opacity: 0;
+	  pointer-events: none;
+	  transition: opacity 0.3s ease, transform 0.3s ease;
+	  z-index: 9999;
+	  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+	  animation: shimmer-tooltip 2s infinite linear;
+	}
 	.card:hover::after {
-		opacity: 1;
-		transform: translateX(-50%) translateY(-4px);
+	  opacity: 1;
+	  transform: translateX(-50%) translateY(-6px);
+	}
+
+	@keyframes card-shimmer {
+	  0% { background-position: -200% 0; }
+	  100% { background-position: 200% 0; }
+	}
+
+	@keyframes shimmer-tooltip {
+	  0% { background-position: -100% 0; }
+	  100% { background-position: 100% 0; }
 	}
 	
 	.reversed .card-back img {
@@ -325,14 +326,6 @@
 		border: 1px solid #bbb;
 	}
 
-	@keyframes shimmer-tooltip {
-		0% {
-			background-position: -100% 0;
-		}
-		100% {
-			background-position: 100% 0;
-		}
-	}
 
 	body.light-mode .card::after {
 		background: linear-gradient(120deg, #ffffff 30%, #dddddd 50%, #ffffff 70%);
@@ -669,7 +662,6 @@
 			}, 1500);
 		});
 	}
-
 
 //after this insights part try not to touch
 	async function fetchInsight(question, cards) {

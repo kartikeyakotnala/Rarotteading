@@ -19,16 +19,18 @@
 	<meta property="og:url" content="https://free-tarotreading.com">
 	<meta property="og:title" content="Free Tarot Reading - Instant & Accurate Online Tarot">
 	<meta property="og:description" content="Draw tarot cards online and get magical, AI-powered guidance. Discover what the cards reveal about your love life, career, and future.">
-	<meta property="og:image" content="https://free-tarotreading.com/images/preview.jpg"> <!-- Replace with actual preview image URL -->
+	<meta property="og:image" content="https://free-tarotreading.com/images/preview.png"> <!-- Replace with actual preview image URL -->
 
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image">
 	<meta property="twitter:url" content="https://free-tarotreading.com">
 	<meta property="twitter:title" content="Free Tarot Reading - Accurate Daily Readings">
 	<meta property="twitter:description" content="Tap a card and reveal your future. Fast, mystical, and AI-guided tarot experiences online.">
-	<meta property="twitter:image" content="https://free-tarotreading.com/images/preview.jpg"> <!-- Replace with actual preview image URL -->
+	<meta property="twitter:image" content="https://free-tarotreading.com/images/preview.png"> <!-- Replace with actual preview image URL -->
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9CT81Q1919"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
@@ -270,9 +272,9 @@
 	  content: '';
 	  position: absolute;
 	  top: 0; left: 0; right: 0; bottom: 0;
-	  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+	  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 	  background-size: 200% 100%;
-	  animation: card-shimmer 3s infinite linear;
+	  animation: shimmer-horizontal 2s infinite linear;
 	  pointer-events: none;
 	  border-radius: 10px;
 	  z-index: 2; /* Ensure shimmer is above card base */
@@ -289,7 +291,7 @@
 	  font-weight: 600;
 	  padding: 6px 12px;
 	  border-radius: 6px;
-	  background: linear-gradient(120deg, #f8f8f8 30%, #cccccc 50%, #eeeeee 70%);
+	  background: linear-gradient(120deg, #f8f8f8 30%, #cccccc 30%, #eeeeee 30%);
 	  background-size: 200% 100%;
 	  color: #121212;
 	  opacity: 0;
@@ -298,13 +300,20 @@
 	  z-index: 9999;
 	  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
 	  animation: shimmer-tooltip 2s infinite linear;
+	  animation: shimmer-diagonal 3s infinite linear;
 	}
 	.card:hover::after {
 	  opacity: 1;
 	  transform: translateX(-50%) translateY(-6px);
 	}
 
-	@keyframes card-shimmer {
+	/* Keyframes */
+	@keyframes shimmer-horizontal {
+	  0% { background-position: -100% 0; }
+	  100% { background-position: 100% 0; }
+	}
+
+	@keyframes shimmer-diagonal {
 	  0% { background-position: -200% 0; }
 	  100% { background-position: 200% 0; }
 	}
@@ -503,6 +512,28 @@
 	body.light-mode .footer-links a:hover {
 	  color: #8b5cf6;
 	}
+	
+	#share-container button {
+	  background: linear-gradient(45deg, #8b5cf6, #d946ef);
+	  color: white;
+	  padding: 10px 10px;
+	  border-radius: 10px;
+	  font-size: 16px;
+	  cursor: pointer;
+	  transition: transform 0.2s ease;
+	  border: none;
+	  box-shadow: 0 0 1px rgba(139, 92, 246, 0.4);
+	}
+
+	#share-container button:hover {
+	  transform: scale(1.05);
+	}
+
+	body.light-mode #share-container button {
+	  background: linear-gradient(45deg, #8b5cf6, #d946ef);
+	  color: white;
+	}
+
 
 </style>
 <body data-theme="auto">
@@ -518,7 +549,7 @@
 
 	<section id='prompt_section'>
 		<div class="quick-access">
-			<button onclick="setQuestion('What does my future hold?'); performReading();">🔮 What does my future hold?</button>
+			<button onclick="setQuestion('What is my horoscope?'); performReading();">🔮 What is my horoscope</button>
 			<button onclick="setQuestion('What should I focus on today?'); performReading();">🌟 What should I focus on today?</button>
 			<button onclick="setQuestion('How can I find love?'); performReading();">❤️ How can I find love?</button>
 		</div>
@@ -533,6 +564,11 @@
 	
 	<section id='insight_section'>
 		<div id="insight"></div>
+		<div id="share-container" style="display: none; margin-top: 20px;">
+			<button onclick="shareReading()">🔗 Share My Reading</button>
+		</div>
+
+
 	</section>
 	
 	<footer id="site-footer">
@@ -549,158 +585,201 @@
 	</footer>
 
 	
-	
-	<script>
-	const cardImages = ['Ace of Cups.jpg', 'Ace of Pentacles.jpg', 'Ace of Swords.jpg', 'Ace of Wands.jpg', 'Death.jpg', 'Eight of Cups.jpg', 'Eight of Pentacles.jpg', 'Eight of Swords.jpg', 'Eight of Wands.jpg', 'Eleven of Wands.jpg', 'Five of Cups.jpg', 'Five of Pentacles.jpg', 'Five of Swords.jpg', 'Five of Wands.jpg', 'Four of Cups.jpg', 'Four of Pentacles.jpg', 'Four of Swords.jpg', 'Four of Wands.jpg', 'Judgement.jpg', 'Justice.jpg', 'King of Cups.jpg', 'King of Pentacles.jpg', 'King of Swords.jpg', 'King of Wands.jpg', 'Knight of Cups.jpg', 'Knight of Pentacles.jpg', 'Knight of Swords.jpg', 'Knight of Wands.jpg', 'Nine of Cups.jpg', 'Nine of Pentacles.jpg', 'Nine of Swords.jpg', 'Nine of Wands.jpg', 'Page of Cups.jpg', 'Page of Pentacles.jpg', 'Page of Swords.jpg', 'Queen of Cups.jpg', 'Queen of Pentacles.jpg', 'Queen of Swords.jpg', 'Queen of Wands.jpg', 'Seven of Cups.jpg', 'Seven of Pentacles.jpg', 'Seven of Swords.jpg', 'Seven of Wands.jpg', 'Six of Cups.jpg', 'Six of Pentacles.jpg', 'Six of Swords.jpg', 'Six of Wands.jpg', 'Strength.jpg', 'Temperance.jpg', 'Ten of Cups.jpg', 'Ten of Pentacles.jpg', 'Ten of Swords.jpg', 'Ten of Wands.jpg', 'The Chariot.jpg', 'TheDevil.jpg', 'TheEmperor.jpg', 'TheEmpress.jpg', 'TheFool.jpg', 'TheHangedMan.jpg', 'TheHermit.jpg', 'TheHierophant.jpg', 'TheHighPriestess.jpg', 'TheLovers.jpg', 'TheMagician.jpg', 'TheMoon.jpg', 'TheStar.jpg', 'TheSun.jpg', 'TheTower.jpg', 'TheWorld.jpg', 'Three of Cups.jpg', 'Three of Pentacles.jpg', 'Three of Swords.jpg', 'Three of Wands.jpg', 'Two of Cups.jpg', 'Two of Pentacles.jpg', 'Two of Swords.jpg', 'Two of Wands.jpg', 'WheelOfFortune.jpg']
-	const availableCards = cardImages;
-	document.addEventListener("DOMContentLoaded", () => {
-		const now = new Date();
-		const hour = now.getHours();
-		const isDayTime = hour >= 6 && hour < 18;
+<script>
+const cardImages = ['Ace of Cups.jpg', 'Ace of Pentacles.jpg', 'Ace of Swords.jpg', 'Ace of Wands.jpg', 'Death.jpg', 'Eight of Cups.jpg', 'Eight of Pentacles.jpg', 'Eight of Swords.jpg', 'Eight of Wands.jpg', 'Eleven of Wands.jpg', 'Five of Cups.jpg', 'Five of Pentacles.jpg', 'Five of Swords.jpg', 'Five of Wands.jpg', 'Four of Cups.jpg', 'Four of Pentacles.jpg', 'Four of Swords.jpg', 'Four of Wands.jpg', 'Judgement.jpg', 'Justice.jpg', 'King of Cups.jpg', 'King of Pentacles.jpg', 'King of Swords.jpg', 'King of Wands.jpg', 'Knight of Cups.jpg', 'Knight of Pentacles.jpg', 'Knight of Swords.jpg', 'Knight of Wands.jpg', 'Nine of Cups.jpg', 'Nine of Pentacles.jpg', 'Nine of Swords.jpg', 'Nine of Wands.jpg', 'Page of Cups.jpg', 'Page of Pentacles.jpg', 'Page of Swords.jpg', 'Queen of Cups.jpg', 'Queen of Pentacles.jpg', 'Queen of Swords.jpg', 'Queen of Wands.jpg', 'Seven of Cups.jpg', 'Seven of Pentacles.jpg', 'Seven of Swords.jpg', 'Seven of Wands.jpg', 'Six of Cups.jpg', 'Six of Pentacles.jpg', 'Six of Swords.jpg', 'Six of Wands.jpg', 'Strength.jpg', 'Temperance.jpg', 'Ten of Cups.jpg', 'Ten of Pentacles.jpg', 'Ten of Swords.jpg', 'Ten of Wands.jpg', 'The Chariot.jpg', 'TheDevil.jpg', 'TheEmperor.jpg', 'TheEmpress.jpg', 'TheFool.jpg', 'TheHangedMan.jpg', 'TheHermit.jpg', 'TheHierophant.jpg', 'TheHighPriestess.jpg', 'TheLovers.jpg', 'TheMagician.jpg', 'TheMoon.jpg', 'TheStar.jpg', 'TheSun.jpg', 'TheTower.jpg', 'TheWorld.jpg', 'Three of Cups.jpg', 'Three of Pentacles.jpg', 'Three of Swords.jpg', 'Three of Wands.jpg', 'Two of Cups.jpg', 'Two of Pentacles.jpg', 'Two of Swords.jpg', 'Two of Wands.jpg', 'WheelOfFortune.jpg'];
 
-		const body = document.body;
-		const themeToggle = document.getElementById("themeToggle");
+let finalizedInsight = '';
+let finalizedCards = [];
 
-		// Load opposite theme first
-		const prefersLight = isDayTime;
+document.addEventListener("DOMContentLoaded", () => {
+	const now = new Date();
+	const hour = now.getHours();
+	const isDayTime = hour >= 6 && hour < 18;
+
+	const body = document.body;
+	const themeToggle = document.getElementById("themeToggle");
+
+	// Load opposite theme first
+	const prefersLight = isDayTime;
+	body.classList.add(prefersLight ? 'dark-mode-temp' : 'light-mode-temp');
+	themeToggle.checked = !prefersLight;
+
+	// Animate to actual theme after delay
+	setTimeout(() => {
+		body.classList.remove(prefersLight ? 'dark-mode-temp' : 'light-mode-temp');
 		if (prefersLight) {
-			body.classList.add('dark-mode-temp');
-			themeToggle.checked = false;
-		} else {
-			body.classList.add('light-mode-temp');
+			body.classList.add('light-mode');
 			themeToggle.checked = true;
 		}
+		themeToggle.classList.add('animate-toggle');
+	}, 2000);
+});
 
-		// Animate to actual theme after delay
-		setTimeout(() => {
-			if (prefersLight) {
-				body.classList.add('light-mode');
-				body.classList.remove('dark-mode-temp');
-				themeToggle.checked = true;
-			} else {
-				body.classList.remove('light-mode-temp');
-				themeToggle.checked = false;
-			}
-			themeToggle.classList.add('animate-toggle');
-		}, 2000);
-	});
-	document.getElementById('themeToggle').addEventListener('change', function() {
-		document.body.classList.toggle('light-mode');
-	});
-	
-	function setQuestion(text) {
-		document.getElementById('question').value = text;
-	}
+document.getElementById('themeToggle').addEventListener('change', () => {
+	document.body.classList.toggle('light-mode');
+});
 
-	function toggleTheme() {
-		document.body.classList.toggle('light-mode');
-	}
-	
-	function setQuestion(text) {
-		document.getElementById('question').value = text;
-	}
- 
-	function performReading() {
-	
-	  const question = document.getElementById('question').value;
-	  if (!question) {
-		alert('Please enter a question.');
-		return;
-	  }
+function setQuestion(text) {
+	document.getElementById('question').value = text;
+}
 
+function performReading() {
+	const question = document.getElementById('question').value;
+	if (!question) return alert('Please enter a question.');
+
+	const cardPool = [...cardImages];
 	const selectedCards = [];
-	for (let i = 0; i < 3; i++) {
-		const randomIndex = Math.floor(Math.random() * availableCards.length);
-		const chosenCard = availableCards.splice(randomIndex, 1)[0]; // remove from pool
-		selectedCards.push(chosenCard);
+
+	while (selectedCards.length < 3 && cardPool.length) {
+		const index = Math.floor(Math.random() * cardPool.length);
+		selectedCards.push(cardPool.splice(index, 1)[0]);
 	}
 
 	displayCards(selectedCards);
 	document.getElementById('cards_section').scrollIntoView({ behavior: 'smooth' });
-	fetchInsight(question, selectedCards);
-	}
-	//giving tooltip to cards
-	
+	fetchInsight(question, finalizedCards);
+}
 
-	function displayCards(cards) {
-		const cardsContainer = document.getElementById('cards');
-		cardsContainer.innerHTML = '';
+function displayCards(cards) {
+	const cardsContainer = document.getElementById('cards');
+	cardsContainer.innerHTML = '';
+	finalizedCards = [];
+	window.rawCardImages = cards; // Save image names for preview generation
 
-		// Make finalizedCards global if not already
-		window.finalizedCards = [];
 
-		cards.forEach((card, index) => {
-			const isReversed = Math.random() < 0.25;
-			const cleanName = card
-				.replace(/\.[^/.]+$/, '')
-				.replace(/([a-z])([A-Z])/g, '$1 $2')
-				.replace(/_/g, ' ')
-				.trim();
+	cards.forEach(card => {
+		const isReversed = Math.random() < 0.25;
+		const cleanName = card.replace(/\.[^/.]+$/, '').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ').trim();
+		const displayName = isReversed ? `${cleanName} (Reversed)` : cleanName;
+		finalizedCards.push(displayName);
 
-			const displayName = isReversed ? `${cleanName} (Reversed)` : cleanName;
-			finalizedCards.push(displayName);
-
-			const cardElement = document.createElement('div');
-			cardElement.className = 'card' + (isReversed ? ' reversed' : '');
-			cardElement.setAttribute('data-tooltip', displayName);
-			cardElement.innerHTML = `
-				<div class="card-inner">
-					<div class="card-front">
-						<img src="images/card_back/card_back.png" alt="Tarot Card">
-					</div>
-					<div class="card-back">
-						<img src="images/card_front/${card}" alt="${displayName}" style="transform: rotate(${isReversed ? 180 : 0}deg);">
-					</div>
+		const cardElement = document.createElement('div');
+		cardElement.className = 'card' + (isReversed ? ' reversed' : '');
+		cardElement.setAttribute('data-tooltip', displayName);
+		cardElement.innerHTML = `
+			<div class="card-inner">
+				<div class="card-front">
+					<img src="images/card_back/card_back.png" alt="Tarot Card">
 				</div>
-			`;
+				<div class="card-back">
+					<img src="images/card_front/${card}" alt="${displayName}" style="transform: rotate(${isReversed ? 180 : 0}deg);">
+				</div>
+			</div>
+		`;
+		cardsContainer.appendChild(cardElement);
+		setTimeout(() => cardElement.classList.add('flipped'), 1500);
+	});
+}
 
-			cardsContainer.appendChild(cardElement);
+// ✨ Share Reading
 
-			// Delay the flip
-			setTimeout(() => {
-				cardElement.classList.add('flipped');
-			}, 1500);
-		});
+const generateShareMessage = (cards, insight) => {
+	  const emojiCardList = cards.map(c => `🃏 ${c}`).join('\n');
+
+	  return `
+	🔮 *My Tarot Reading Result* 🔮
+
+	${emojiCardList}
+
+	💫 *Insight* 💫
+	${insight.replace(/\*\*(.*?)\*\*/g, '*$1*')}
+
+	👇 Try your own tarot journey:
+	🌐 https://free-tarotreading.com
+	`.trim();
+};
+
+
+async function generateSharePreview(cards) {
+	const container = document.createElement('div');
+	container.style.position = 'relative';
+	container.style.display = 'flex';
+	container.style.gap = '10px';
+	container.style.justifyContent = 'center';
+	container.style.background = '#1e1e2f';
+	container.style.padding = '20px';
+	container.style.borderRadius = '12px';
+	container.style.width = 'fit-content';
+	container.style.boxShadow = '0 0 12px rgba(255, 255, 255, 0.2)';
+
+	cards.forEach(card => {
+		const img = document.createElement('img');
+		img.src = `images/card_front/${card}`;
+		img.style.width = '80px';
+		img.style.height = 'auto';
+		img.style.borderRadius = '8px';
+		img.style.boxShadow = '0 0 4px #ccc';
+		container.appendChild(img);
+	});
+
+	// Mount off-screen for rendering
+	document.body.appendChild(container);
+	container.style.position = 'absolute';
+	container.style.top = '-9999px';
+
+	// Capture screenshot
+	const canvas = await html2canvas(container);
+	const imageData = canvas.toDataURL("image/png");
+
+	document.body.removeChild(container); // clean up
+	return imageData;
+}
+
+
+
+async function shareReading() {
+	const shareText = `🔮 My Tarot Reading on free-tarotreading.com\n\nCards Drawn: ${finalizedCards.join(', ')}\n\n✨ Insight:\n${finalizedInsight}\n\n👉 Try your tarot for free: https://free-tarotreading.com`;
+
+	const imageDataUrl = await generateSharePreview(window.rawCardImages || []);
+
+	if (navigator.share && navigator.canShare({ files: [] })) {
+		const blob = await (await fetch(imageDataUrl)).blob();
+		const file = new File([blob], 'tarot-reading.png', { type: blob.type });
+
+		try {
+			await navigator.share({
+				title: "My Tarot Reading",
+				text: shareText,
+				files: [file]
+			});
+		} catch (err) {
+			console.error("Sharing failed", err);
+		}
+	} else {
+		// WhatsApp fallback
+		const waText = encodeURIComponent(shareText);
+		window.open(`https://wa.me/?text=${waText}`, "_blank");
 	}
+}
 
-//after this insights part try not to touch
-	async function fetchInsight(question, cards) {
-		const insightDiv = document.getElementById('insight');
-		insightDiv.classList.remove('show-insight');
-		insightDiv.innerHTML = `<div class="loading-message">✨ Interpreting the cosmic energies...</div>`;
 
-		const response = await fetch('https://free-tarotreading.com/get-insight', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ question, cards })
-		});
 
-		const data = await response.json();
-		const rawText = data.insight;
+// 🔮 Fetch Insight important function
+async function fetchInsight(question, cards) {
+	const insightDiv = document.getElementById('insight');
+	insightDiv.classList.remove('show-insight');
+	insightDiv.innerHTML = `<div class="loading-message">✨ Interpreting the cosmic energies...</div>`;
 
-		// Bold **text** using RegEx
-		const formattedText = rawText; // Keep original with **bold** markers
+	const response = await fetch('https://free-tarotreading.com/get-insight', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ question, cards })
+	});
 
-		// Typing effect
-		function parseFormattedText(text) {
+	const data = await response.json();
+	finalizedInsight = data.insight;
+
+	function parseFormattedText(text) {
 		const segments = [];
-		let remaining = text;
-		let match;
-
+		let remaining = text, match;
 		const boldRegex = /\*\*(.*?)\*\*/;
 
 		while ((match = boldRegex.exec(remaining)) !== null) {
-			if (match.index > 0) {
-				segments.push({ text: remaining.slice(0, match.index), bold: false });
-			}
+			if (match.index > 0) segments.push({ text: remaining.slice(0, match.index), bold: false });
 			segments.push({ text: match[1], bold: true });
 			remaining = remaining.slice(match.index + match[0].length);
 		}
-
-		if (remaining) {
-			segments.push({ text: remaining, bold: false });
-		}
-
+		if (remaining) segments.push({ text: remaining, bold: false });
 		return segments;
 	}
 
@@ -713,19 +792,18 @@
 		for (const segment of segments) {
 			const span = document.createElement(segment.bold ? 'strong' : 'span');
 			container.appendChild(span);
-
 			for (let i = 0; i < segment.text.length; i++) {
 				span.textContent += segment.text[i];
 				await new Promise(res => setTimeout(res, 12));
 			}
 		}
 	}
-	setTimeout(() => displayAnimatedInsight(formattedText), 300);
-	}
 
-	
-	</script>
-	</body>
-	</html>
+	setTimeout(() => {
+		displayAnimatedInsight(finalizedInsight);
+		document.getElementById("share-container").style.display = "block";
+	}, 300);
+}
+</script>
 
 

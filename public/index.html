@@ -728,33 +728,34 @@ async function generateSharePreview(cards) {
 
 
 async function shareReading() {
-	const shareText = `🔮 My Tarot Reading on free-tarotreading.com\n\nCards Drawn: ${finalizedCards.join(', ')}\n\n✨ Insight:\n${finalizedInsight}\n\n👉 Try your tarot for free: https://free-tarotreading.com`;
+  const question = document.getElementById("question").value;
 
-	const imageDataUrl = await generateSharePreview(window.rawCardImages || []);
+  // Format insight properly
+  const cleanInsight = finalizedInsight
+    .replace(/\*\*(.*?)\*\*/g, '*$1*') // Bold for WhatsApp
+    .replace(/“|”/g, '"')              // Curly quotes → straight
+    .replace(/‘|’/g, "'");             // Curly apostrophes → straight
 
-	if (navigator.share && navigator.canShare({ files: [] })) {
-		const blob = await (await fetch(imageDataUrl)).blob();
-		const file = new File([blob], 'tarot-reading.png', { type: blob.type });
+  // Final message with safe emojis (Unicode-based)
+  const shareText = 
+`🔮 *My Tarot Reading* from https://free-tarotreading.com
 
-		try {
-			await navigator.share({
-				title: "My Tarot Reading",
-				text: shareText,
-				files: [file]
-			});
-		} catch (err) {
-			console.error("Sharing failed", err);
-		}
-	} else {
-		// WhatsApp fallback
-		const waText = encodeURIComponent(shareText);
-		window.open(`https://wa.me/?text=${waText}`, "_blank");
-	}
+📝 *Question:* ${question}
+🃏 *Cards Drawn:* ${finalizedCards.join(', ')}
+
+✨ *Insight:*
+${cleanInsight}
+
+🔗 Try your Tarot for free: https://free-tarotreading.com`;
+
+  const encoded = encodeURIComponent(shareText);
+  const whatsappUrl = `https://wa.me/?text=${encoded}`;
+  window.open(whatsappUrl, "_blank");
 }
 
 
 
-// 🔮 Fetch Insight important function
+// 🔮 Fetch Insight
 async function fetchInsight(question, cards) {
 	const insightDiv = document.getElementById('insight');
 	insightDiv.classList.remove('show-insight');
@@ -805,5 +806,4 @@ async function fetchInsight(question, cards) {
 	}, 300);
 }
 </script>
-
 

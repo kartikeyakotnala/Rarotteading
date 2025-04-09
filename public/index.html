@@ -174,8 +174,9 @@
 	.quick-access {
 		display: flex;
 		justify-content: center;
-		gap: 10px;
-		margin-bottom: 20px;
+		gap: 5px;
+		margin-bottom: 10px;
+		flex-wrap: wrap; /* In case it overflows on small screens */
 	}
 
 	.quick-access button {
@@ -186,11 +187,17 @@
 		border-radius: 8px;
 		cursor: pointer;
 		transition: transform 0.3s ease;
+		flex: 1 1 120px; /* makes all buttons take the same minimum width */
+		text-align: center;
+		font-size: 16px;
+		white-space: normal; /* allow multi-line text */
+		max-width: 240px; /* optional: limits too wide on big screens */
 	}
 
 	.quick-access button:hover {
 		transform: scale(1.05);
 	}
+
 	
 	#cards {
 		display: flex;
@@ -613,8 +620,6 @@
 		background-position: -50% -50%;
 	  }
 	}
-
-
 
 
 </style>

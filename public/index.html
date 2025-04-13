@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot Reading</title>
+	<link rel="icon" type="image/png" href="/images/favicon.png">
+
+		<!-- Google tag (gtag.js) -->
+		<!-- Primary Meta Tags -->
+	<meta name="title" content="Free Tarot Reading - Accurate Daily Tarot Insights Online">
+	<meta name="description" content="Get your free tarot reading online. Instant, accurate, AI-powered tarot insights for love, career, and life guidance. No sign-up needed. Tap a card to reveal your destiny.">
+	<meta name="keywords" content="free tarot reading, online tarot cards, daily tarot, tarot spread, love tarot, tarot predictions, accurate tarot reading, AI tarot, tarot insights, card of the day, fortune telling, free tarot love reading, free tarot online, instant tarot reading">
+	<meta name="author" content="free-tarotreading.com">
+	<meta name="robots" content="index, follow">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://free-tarotreading.com">
+	<meta property="og:title" content="Free Tarot Reading - Instant & Accurate Online Tarot">
+	<meta property="og:description" content="Draw tarot cards online and get magical, AI-powered guidance. Discover what the cards reveal about your love life, career, and future.">
+	<meta property="og:image" content="https://free-tarotreading.com/images/preview.png"> <!-- Replace with actual preview image URL -->
+
+	<!-- Twitter -->
+	<meta property="twitter:card" content="summary_large_image">
+	<meta property="twitter:url" content="https://free-tarotreading.com">
+	<meta property="twitter:title" content="Free Tarot Reading - Accurate Daily Readings">
+	<meta property="twitter:description" content="Tap a card and reveal your future. Fast, mystical, and AI-guided tarot experiences online.">
+	<meta property="twitter:image" content="https://free-tarotreading.com/images/preview.png"> <!-- Replace with actual preview image URL -->
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9CT81Q1919"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-9CT81Q1919');
+	</script>
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;700&display=swap');
+
+	/* 🌟 Magical Scrollbar */
+	::-webkit-scrollbar {
+		border-radius: 2px;
+		width: 2px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: linear-gradient(120deg, #ffffff 30%, #c0c0c0 50%, #000000 70%);
+		background-size: 200% 100%;
+		border-radius: 10px;
+		animation: shimmer-wand 2s infinite linear;;
+		box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+	}
+
+	@keyframes shimmer-wand {
+		0% {
+			background-position: -100% 0;
+		}
+		100% {
+			background-position: 100% 0;
+		}
+	}
+
+	/* Firefox (optional fallback) */
+	* {
+		scrollbar-color: #c0c0c0 transparent;
+		scrollbar-width: thin;
+	}
+	html{
+		scroll-behavior: smooth;
+	}
+	
+	:root {
+		--background-dark: #121212;
+		--background-light: #f0f0f0;
+		--text-dark: #ffffff;
+		--text-light: #000000;
+		--card-back-dark: #bbb;
+		--card-back-light: #fff;
+	}
+
+	body {
+		font-family: 'Raleway', sans-serif;
+		background-color: var(--background-dark);
+		color: var(--text-dark);
+		text-align: center;
+		padding: 20px;
+		transition: background 0.5s, color 0.5s;
+	}
+
+	body.light-mode {
+		background-color: var(--background-light);
+		color: var(--text-light);
+	}
+
+	h1 {
+		font-family: 'Cinzel', serif;
+		font-size: 36px;
+		margin-bottom: 10px;
+		text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+	}
+
+	.toggle-container {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		display: flex;
+		align-items: center;
+	}
+
+	.toggle-switch {
+		position: relative;
+		display: inline-block;
+		width: 40px;
+		height: 20px;
+	}
+
+	.toggle-switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		transition: .4s;
+		border-radius: 20px;
+	}
+
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 14px;
+		width: 14px;
+		left: 3px;
+		bottom: 3px;
+		background-color: white;
+		transition: .4s;
+		border-radius: 50%;
+	}
+	
+	input {
+		width: 80%;
+		padding: 10px;
+		margin: 10px 0;
+		border-radius: 5px;
+		border: none;
+		background-color: #333;
+		color: white;
+		font-size: 16px;
+	}
+
+	input:checked + .slider {
+		background-color: #8b5cf6;
+	}
+
+	input:checked + .slider:before {
+		transform: translateX(20px);
+	}
+
+	.quick-access {
+		display: flex;
+		justify-content: center;
+		gap: 5px;
+		margin-bottom: 10px;
+		flex-wrap: wrap; /* In case it overflows on small screens */
+	}
+
+	.quick-access button {
+		background: linear-gradient(45deg, #8b5cf6, #d946ef);
+		color: white;
+		border: none;
+		padding: 10px 15px;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+		flex: 1 1 120px; /* makes all buttons take the same minimum width */
+		text-align: center;
+		font-size: 16px;
+		white-space: normal; /* allow multi-line text */
+		max-width: 240px; /* optional: limits too wide on big screens */
+	}
+
+	.quick-access button:hover {
+		transform: scale(1.05);
+	}
+
+	
+	#cards {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		margin-top: 20px;
+	}
+	
+
+	.card-wrapper {
+		display: flex;
+		justify-content: center;
+		gap: 1px;
+		flex-wrap: wrap;
+		padding: 0 10px;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+
+	@keyframes magical-appear {
+		0% {
+			transform: scale(0.5) rotateY(90deg);
+			opacity: 0;
+		}
+		100% {
+			transform: scale(1) rotateY(0deg);
+			opacity: 1;
+		}
+	}
+
+
+	.card {
+	  position: relative;
+	  flex: 1 1 calc(33.333% - 5px);
+	  max-width: 160px;
+	  aspect-ratio: 1.6 / 3;
+	  perspective: 1000px;
+	  cursor: pointer;
+	  border-radius: 10px;
+	  overflow: visible; /* Allow tooltip to overflow */
+	  transition: transform 2s ease;
+	  box-sizing: border-box;
+	  scroll-snap-align: start;
+	  z-index: 1;
+	}
+
+
+	.card-inner {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		transform-style: preserve-3d;
+		transition: transform 1s;
+	}
+
+	.card.flipped .card-inner {
+		transform: rotateY(180deg);
+	}
+
+	.card-front, .card-back {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		backface-visibility: hidden;
+	}
+
+	.card-front img, .card-back img {
+		width: 100%;
+		height: 100%;
+		border-radius: 10px;
+	}
+
+	.card-back {
+		transform: rotateY(180deg);
+	}
+		
+	.card::before {
+	  content: '';
+	  position: absolute;
+	  top: 0; left: 0; right: 0; bottom: 0;
+	  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+	  background-size: 200% 100%;
+	  animation: shimmer-horizontal 2s infinite linear;
+	  pointer-events: none;
+	  border-radius: 10px;
+	  z-index: 2; /* Ensure shimmer is above card base */
+	}
+
+	.card::after {
+	  content: attr(data-tooltip);
+	  position: absolute;
+	  bottom: -42px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  white-space: nowrap;
+	  font-size: 14px;
+	  font-weight: 600;
+	  padding: 6px 12px;
+	  border-radius: 6px;
+	  background: linear-gradient(120deg, #f8f8f8 30%, #cccccc 30%, #eeeeee 30%);
+	  background-size: 200% 100%;
+	  color: #121212;
+	  opacity: 0;
+	  pointer-events: none;
+	  transition: opacity 0.3s ease, transform 0.3s ease;
+	  z-index: 9999;
+	  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+	  animation: shimmer-tooltip 2s infinite linear;
+	  animation: shimmer-diagonal 3s infinite linear;
+	}
+	.card:hover::after {
+	  opacity: 1;
+	  transform: translateX(-50%) translateY(-6px);
+	}
+
+	/* Keyframes */
+	@keyframes shimmer-horizontal {
+	  0% { background-position: -100% 0; }
+	  100% { background-position: 100% 0; }
+	}
+
+	@keyframes shimmer-diagonal {
+	  0% { background-position: -200% 0; }
+	  100% { background-position: 200% 0; }
+	}
+
+	@keyframes shimmer-tooltip {
+	  0% { background-position: -100% 0; }
+	  100% { background-position: 100% 0; }
+	}
+	
+	.reversed .card-back img {
+		filter: brightness(1.05) saturate(1.2) drop-shadow(0 0 2px #d1aaff);
+		transform: rotate(180deg);
+	}
+
+	.reversed::after {
+		background: linear-gradient(135deg, #fdfbfb, #e2d1f9);
+		color: #2e003e;
+		font-weight: bold;
+		border: 1px solid #bbb;
+	}
+
+
+	body.light-mode .card::after {
+		background: linear-gradient(120deg, #ffffff 30%, #dddddd 50%, #ffffff 70%);
+		background-size: 200% 100%;
+		color: #000;
+		box-shadow: 0 0 8px rgba(160, 160, 160, 0.4);
+		animation: shimmer-tooltip 2s infinite linear;
+	}
+
+
+	
+	#cards { display: flex; justify-content: center; margin-top: 20px; }
+	.card { width: 150px; height: 250px; margin: 10px; perspective: 1000px; }
+	
+	.card-front { background-color: #bbb; display: flex; align-items: center; justify-content: center; }
+	.card-back { background-color: #fff; transform: rotateY(180deg); }
+	img { width: 100%; height: auto; }
+	
+	button {
+		padding: 10px 15px;
+		background-color: #8b5cf6;
+		color: white;
+		border: none;
+		cursor: pointer;
+		border-radius: 5px;
+		font-size: 16px;
+		transition: background 0.3s;
+	}
+
+	button:hover {
+		background-color: #6d28d9;
+	}
+	
+	#insight {
+		margin-top: 20px;
+		font-size: 16.5px;
+		text-align: justify;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 15px 20px;
+		background-color: var(--insight-dark);
+		border-radius: 8px;
+		opacity: 1;
+		transition: opacity 0.8s ease;
+		line-height: 1.6;
+		white-space: pre-line;
+	}
+
+	.show-insight {
+		opacity: 1;
+		animation: fadeIn 0.8s ease;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(10px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	@keyframes shimmer {
+		0% {
+			background-position: -100% 0;
+		}
+		100% {
+			background-position: 100% 0;
+		}
+	}
+
+	.loading-message {
+		position: relative;
+		font-style: bold italic;
+		font-size: 20px;
+		text-align: left;
+		padding: 10px;
+		overflow: hidden;
+		background: linear-gradient(120deg, #fafafa 30%, #c0c0c0 50%, #78706e 70%);
+		background-size: 200% 100%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: shimmer 2s infinite linear;
+		color: #fff;
+		font-weight: 500;
+	}
+
+
+
+	body.light-mode #insight {
+		background-color: var(--insight-light);
+		color: var(--text-light);
+	}
+	
+	/* Temporary theme classes to allow transition */
+	.dark-mode-temp {
+		background-color: #121212;
+		color: white;
+	}
+	.light-mode-temp {
+		background-color: #f0f0f0;
+		color: black;
+	}
+
+	/* Optional: Smooth toggle animation */
+	.animate-toggle + .slider {
+		box-shadow: 0 0 1px 1px #8b5cf6;
+		transition: box-shadow 1s ease-in-out;
+	}
+	
+	/* Footer */
+	#site-footer {
+	  background-color: #1a1a1a;
+	  color: #eee;
+	  padding: 30px 20px;
+	  font-size: 14px;
+	  margin-top: 20px;
+	  border-top: 1px solid #333;
+	  text-align: center;
+	  box-shadow: 0 -2px 20px rgba(255, 255, 255, 0.05);
+	  transform: translateY(20px);
+	  opacity: 0;
+	  animation: slideUpFooter 1s ease forwards 1s;
+	  
+	}
+	
+
+	@keyframes slideUpFooter {
+	  to {
+		opacity: 1;
+		transform: translateY(0);
+	  }
+	}
+
+	.footer-content {
+	  max-width: 800px;
+	  margin: auto;
+	}
+
+	.footer-logo {
+	  font-family: 'Cinzel', serif;
+	  font-size: 15px;
+	  color: #8b5cf6;
+	  margin-bottom: 10px;
+	}
+
+	.footer-links {
+	  display: flex;
+	  justify-content: center;
+	  flex-wrap: wrap;
+	  gap: 10px;
+	  margin-bottom: 15px;
+	}
+
+	.footer-links a {
+	  color: #ccc;
+	  text-decoration: none;
+	  transition: color 0.3s ease;
+	}
+
+	.footer-links a:hover {
+	  color: #8b5cf6;
+	}
+
+	.footer-credit {
+	  font-size: 13px;
+	  color: #777;
+	}
+
+	body.light-mode #site-footer {
+	  background-color: #f4f4f4;
+	  color: #333;
+	}
+
+	body.light-mode .footer-links a {
+	  color: #444;
+	}
+
+	body.light-mode .footer-links a:hover {
+	  color: #8b5cf6;
+	}
+	
+	#share-container button {
+	  background: linear-gradient(45deg, #8b5cf6, #d946ef);
+	  color: white;
+	  padding: 10px 10px;
+	  border-radius: 10px;
+	  font-size: 16px;
+	  cursor: pointer;
+	  transition: transform 0.2s ease;
+	  border: none;
+	  box-shadow: 0 0 1px rgba(139, 92, 246, 0.4);
+	}
+
+	#share-container button:hover {
+	  transform: scale(1.05);
+	}
+
+	body.light-mode #share-container button {
+	  background: linear-gradient(45deg, #8b5cf6, #d946ef);
+	  color: white;
+	}
+	
+	.popup {
+	  position: fixed;
+	  top: 0; left: 0; right: 0; bottom: 0;
+	  background: rgba(0, 0, 0, 0.7);
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  z-index: 9999;
+	}
+	.popup-content {
+	  background: #fff;
+	  padding: 30px;
+	  border-radius: 10px;
+	  text-align: center;
+	  max-width: 400px;
+	  color: #333;
+	}
+	.popup.hidden {
+	  display: none;
+	}
+
+	@keyframes fadeSlideIn {
+	  0% {
+		opacity: 0;
+		transform: translateY(30px) scale(0.95);
+	  }
+	  100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	  }
+	}
+
+	.animated {
+	  opacity: 0;
+	  animation: fadeSlideIn 1s ease forwards;
+	}
+
+	.animated.delay-1 {
+	  animation-delay: 0.3s;
+	}
+	.animated.delay-2 {
+	  animation-delay: 0.6s;
+	}
+	.animated.delay-3 {
+	  animation-delay: 0.9s;
+	}
+
+	#shimmer-overlay {
+	  position: fixed;
+	  top: 0; left: 0;
+	  width: 100vw;
+	  height: 100vh;
+	  background: linear-gradient(
+		130deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.15) 30%,
+		rgba(192, 192, 192, 0.35) 50%,
+		rgba(255, 255, 255, 0.15) 70%,
+		transparent 100%
+	  );
+	  background-size: 150% 150%;
+	  opacity: 0;
+	  pointer-events: none;
+	  z-index: 9999;
+	}
+
+	@keyframes shimmerWave {
+	  0% {
+		opacity: 0;
+		background-position: 100% 100%;
+	  }
+	  20% {
+		opacity: 1;
+	  }
+	  100% {
+		opacity: 0;
+		background-position: -50% -50%;
+	  }
+	}
+
+	#firefly-canvas {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  pointer-events: none;
+	  z-index: 0; /* Adjust if you want them behind everything */
+	}
+
+
+
+
+</style>
+<body data-theme="auto">
+	<audio id="flipSound" src="sounds/cardflip.mp3" preload="auto"></audio>
+	<div id="shimmer-overlay"></div>
+
+    <div class="toggle-container">
+        <label>🌙</label>
+        <label class="toggle-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <h1 class="animated delay-1">🌙 Tarot Reading ✨</h1>
+
+	<section id='prompt_section'>
+		<div class="quick-access">
+			<button class="animated delay-2" onclick="setQuestion('What is my horoscope?'); performReading();">🔮 What is my horoscope</button>
+			<button class="animated delay-2" onclick="setQuestion('What should I focus on today?'); performReading();">🌟 What should I focus on today?</button>
+			<button class="animated delay-2" onclick="setQuestion('How can I find love?'); performReading();">❤️ How can I find love?</button>
+		</div>
+
+		<input class="animated delay-3" type="text" id="question" placeholder="Enter your question here...">
+		<button class="animated delay-3" onclick="performReading()">Get Reading</button>
+		
+		<div id="faith-popup" class="popup hidden">
+		  <div class="popup-content">
+			<p>✨ The Universe has already answered your question.</p>
+			<p style="font-style: italic;">
+			  Tarot speaks when asked sincerely. Asking again may silence its wisdom. Trust the message you've received.
+			</p>
+			<button onclick="closeFaithPopup()">I Understand</button>
+		  </div>
+		</div>
+
+	</section>	
+	
+	<section id='cards_section'>
+		<div id="cards" class="card-wrapper"></div>
+	</section>	
+	
+	<section id='insight_section'>
+		<div id="insight"></div>
+		<div id="share-container" style="display: none; margin-top: 20px;">
+			<button onclick="shareReading()">🔗 Share My Reading</button>
+		</div>
+
+
+	</section>
+	
+	<footer id="site-footer">
+	  <div class="footer-content">
+		<div class="footer-logo">🔮 free-tarotreading.com</div>
+		<div class="footer-links">
+		  <a href="#prompt_section">Get Reading</a>
+		  <a href="#cards_section">Cards</a>
+		  <a href="#insight_section">Insights</a>
+		  <a href="Terms of Use.html">Terms of Use</a>
+		</div>
+		<p class="footer-credit">© <span id="year">2025</span> Free Tarot Reading. All rights reserved.</p>
+	  </div>
+	</footer>
+
+	<canvas id="firefly-canvas"></canvas>
+
+</body>	
+<script>
+
+function triggerShimmer(times = 1) {
+  const shimmer = document.getElementById("shimmer-overlay");
+  if (!shimmer) return;
+
+  let count = 0;
+
+  const animate = () => {
+    shimmer.style.animation = "none"; // Reset animation
+    shimmer.offsetHeight; // Trigger reflow
+    shimmer.style.animation = "shimmerWave 1.5s ease-out forwards";
+
+    count++;
+    if (count < times) {
+      setTimeout(animate, 800); // Interval between waves
+    }
+  };
+
+  animate();
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  triggerShimmer(3);
+});
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Animate key elements
+  document.querySelector("h1")?.classList.add("animated", "delay-1");
+  document.querySelector("#question")?.classList.add("animated", "delay-2");
+  document.querySelector("button[onclick='performReading()']")?.classList.add("animated", "delay-3");
+
+  // Trigger shimmer after slight delay
+  setTimeout(() => {
+    const shimmer = document.getElementById("shimmer-overlay");
+    if (shimmer) shimmer.style.opacity = 1;
+  }, 1600); // Play after animations finish
+});
+
+const cardImages = ['Ace of Cups.jpg', 'Ace of Pentacles.jpg', 'Ace of Swords.jpg', 'Ace of Wands.jpg', 'Death.jpg', 'Eight of Cups.jpg', 'Eight of Pentacles.jpg', 'Eight of Swords.jpg', 'Eight of Wands.jpg', 'Eleven of Wands.jpg', 'Five of Cups.jpg', 'Five of Pentacles.jpg', 'Five of Swords.jpg', 'Five of Wands.jpg', 'Four of Cups.jpg', 'Four of Pentacles.jpg', 'Four of Swords.jpg', 'Four of Wands.jpg', 'Judgement.jpg', 'Justice.jpg', 'King of Cups.jpg', 'King of Pentacles.jpg', 'King of Swords.jpg', 'King of Wands.jpg', 'Knight of Cups.jpg', 'Knight of Pentacles.jpg', 'Knight of Swords.jpg', 'Knight of Wands.jpg', 'Nine of Cups.jpg', 'Nine of Pentacles.jpg', 'Nine of Swords.jpg', 'Nine of Wands.jpg', 'Page of Cups.jpg', 'Page of Pentacles.jpg', 'Page of Swords.jpg', 'Queen of Cups.jpg', 'Queen of Pentacles.jpg', 'Queen of Swords.jpg', 'Queen of Wands.jpg', 'Seven of Cups.jpg', 'Seven of Pentacles.jpg', 'Seven of Swords.jpg', 'Seven of Wands.jpg', 'Six of Cups.jpg', 'Six of Pentacles.jpg', 'Six of Swords.jpg', 'Six of Wands.jpg', 'Strength.jpg', 'Temperance.jpg', 'Ten of Cups.jpg', 'Ten of Pentacles.jpg', 'Ten of Swords.jpg', 'Ten of Wands.jpg', 'The Chariot.jpg', 'TheDevil.jpg', 'TheEmperor.jpg', 'TheEmpress.jpg', 'TheFool.jpg', 'TheHangedMan.jpg', 'TheHermit.jpg', 'TheHierophant.jpg', 'TheHighPriestess.jpg', 'TheLovers.jpg', 'TheMagician.jpg', 'TheMoon.jpg', 'TheStar.jpg', 'TheSun.jpg', 'TheTower.jpg', 'TheWorld.jpg', 'Three of Cups.jpg', 'Three of Pentacles.jpg', 'Three of Swords.jpg', 'Three of Wands.jpg', 'Two of Cups.jpg', 'Two of Pentacles.jpg', 'Two of Swords.jpg', 'Two of Wands.jpg', 'WheelOfFortune.jpg'];
+
+let finalizedInsight = '';
+let finalizedCards = [];
+
+// Store previous readings
+const readings = JSON.parse(localStorage.getItem("tarotReadings")) || {};
+
+function showFaithPopup() {
+  const popup = document.getElementById("faith-popup");
+  if (popup) popup.classList.remove("hidden");
+}
+
+function closeFaithPopup() {
+  const popup = document.getElementById("faith-popup");
+  if (popup) popup.classList.add("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+	const now = new Date();
+	const hour = now.getHours();
+	const isDayTime = hour >= 6 && hour < 18;
+
+	const body = document.body;
+	const themeToggle = document.getElementById("themeToggle");
+
+	// Load opposite theme first
+	const prefersLight = isDayTime;
+	body.classList.add(prefersLight ? 'dark-mode-temp' : 'light-mode-temp');
+	themeToggle.checked = !prefersLight;
+
+	// Animate to actual theme after delay
+	setTimeout(() => {
+		body.classList.remove(prefersLight ? 'dark-mode-temp' : 'light-mode-temp');
+		if (prefersLight) {
+			body.classList.add('light-mode');
+			themeToggle.checked = true;
+		}
+		themeToggle.classList.add('animate-toggle');
+	}, 2000);
+});
+
+document.getElementById('themeToggle').addEventListener('change', () => {
+	document.body.classList.toggle('light-mode');
+});
+
+function setQuestion(text) {
+	document.getElementById('question').value = text;
+}
+
+
+function performReading() {
+	const question = document.getElementById('question').value.trim();
+	if (!question) {
+		alert('Please enter a question.');
+		return;
+	}
+	
+	// Play flip sound
+	const flipAudio = document.getElementById("flipSound");
+	flipAudio.volume = 0.33; // Set to 50% volume by default
+	if (flipAudio) {
+	  flipAudio.currentTime = 0;
+	  flipAudio.play().catch(() => {
+		// User hasn't interacted yet, ignore silently
+	  });
+	}
+		
+  const readings = JSON.parse(localStorage.getItem("tarotReadings")) || {};
+  const now = Date.now(); // current timestamp in milliseconds
+
+  // Check for existing reading within 4 hours
+  const existing = readings[question];
+  if (existing && (now - existing.timestamp < 12 * 60 * 60 * 1000)) {
+    showFaithPopup();
+    displayCards(existing.cards);
+    fetchInsight(question, existing.cards);
+    return;
+  }
+
+  // New draw
+  const selectedCards = [];
+  const availableCopy = [...cardImages];
+  for (let i = 0; i < 3; i++) {
+    const index = Math.floor(Math.random() * availableCopy.length);
+    const name = availableCopy.splice(index, 1)[0];
+    const reversed = Math.random() < 0.25;
+    selectedCards.push({ name, reversed });
+  }
+
+  displayCards(selectedCards);
+  fetchInsight(question, selectedCards);
+
+  // Save with timestamp
+  readings[question] = {
+    cards: selectedCards,
+    timestamp: now
+  };
+  localStorage.setItem("tarotReadings", JSON.stringify(readings));
+}
+
+
+
+
+
+function displayCards(cards) {
+  const cardsContainer = document.getElementById('cards');
+  cardsContainer.innerHTML = '';
+  finalizedCards = [];
+  window.rawCardImages = cards;
+
+  cards.forEach(card => {
+    const { name, reversed } = card;
+    const cleanName = name.replace(/\.[^/.]+$/, '').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ').trim();
+    const displayName = reversed ? `${cleanName} (Reversed)` : cleanName;
+    finalizedCards.push(displayName);
+
+    const cardElement = document.createElement('div');
+    cardElement.className = 'card' + (reversed ? ' reversed' : '');
+    cardElement.setAttribute('data-tooltip', displayName);
+    cardElement.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="images/card_back/card_back.png" alt="Tarot Card">
+        </div>
+        <div class="card-back">
+          <img src="images/card_front/${name}" alt="${displayName}" style="transform: rotate(${reversed ? 180 : 0}deg);">
+        </div>
+      </div>
+    `;
+
+    cardsContainer.appendChild(cardElement);
+    setTimeout(() => cardElement.classList.add('flipped'), 1500);
+  });
+}
+
+
+// ✨ Share Reading
+
+const generateShareMessage = (cards, insight) => {
+	  const emojiCardList = cards.map(c => `🃏 ${c}`).join('\n');
+
+	  return `
+	🔮 *My Tarot Reading Result* 🔮
+
+	${emojiCardList}
+
+	💫 *Insight* 💫
+	${insight.replace(/\*\*(.*?)\*\*/g, '*$1*')}
+
+	👇 Try your own tarot journey:
+	🌐 https://free-tarotreading.com
+	`.trim();
+};
+
+
+async function generateSharePreview(cards) {
+	const container = document.createElement('div');
+	container.style.position = 'relative';
+	container.style.display = 'flex';
+	container.style.gap = '10px';
+	container.style.justifyContent = 'center';
+	container.style.background = '#1e1e2f';
+	container.style.padding = '20px';
+	container.style.borderRadius = '12px';
+	container.style.width = 'fit-content';
+	container.style.boxShadow = '0 0 12px rgba(255, 255, 255, 0.2)';
+
+	cards.forEach(card => {
+		const img = document.createElement('img');
+		img.src = `images/card_front/${card}`;
+		img.style.width = '80px';
+		img.style.height = 'auto';
+		img.style.borderRadius = '8px';
+		img.style.boxShadow = '0 0 4px #ccc';
+		container.appendChild(img);
+	});
+
+	// Mount off-screen for rendering
+	document.body.appendChild(container);
+	container.style.position = 'absolute';
+	container.style.top = '-9999px';
+
+	// Capture screenshot
+	const canvas = await html2canvas(container);
+	const imageData = canvas.toDataURL("image/png");
+
+	document.body.removeChild(container); // clean up
+	return imageData;
+}
+
+
+
+async function shareReading() {
+  const question = document.getElementById("question").value;
+
+  // Format insight properly
+  const cleanInsight = finalizedInsight
+    .replace(/\*\*(.*?)\*\*/g, '*$1*') // Bold for WhatsApp
+    .replace(/“|”/g, '"')              // Curly quotes → straight
+    .replace(/‘|’/g, "'");             // Curly apostrophes → straight
+
+  // Final message with safe emojis (Unicode-based)
+  const shareText = 
+`🔮 *My Tarot Reading* from https://free-tarotreading.com
+
+📝 *Question:* ${question}
+🃏 *Cards Drawn:* ${finalizedCards.join(', ')}
+
+✨ *Insight:*
+${cleanInsight}
+
+🔗 Try your Tarot for free: https://free-tarotreading.com`;
+
+  const encoded = encodeURIComponent(shareText);
+  const whatsappUrl = `https://wa.me/?text=${encoded}`;
+  window.open(whatsappUrl, "_blank");
+}
+
+
+
+// 🔮 Fetch Insight
+async function fetchInsight(question, cards) {
+  const insightDiv = document.getElementById('insight');
+  insightDiv.classList.remove('show-insight');
+  insightDiv.innerHTML = `<div class="loading-message">✨ Interpreting the cosmic energies...</div>`;
+
+  // Format cards for backend
+  const formattedCardNames = cards.map(c => {
+    const cleanName = c.name.replace(/\.[^/.]+$/, '').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ').trim();
+    return c.reversed ? `${cleanName} (Reversed)` : cleanName;
+  });
+
+   const response = await fetch('https://free-tarotreading.com/get-insight', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question, cards: formattedCardNames })
+  });
+
+  const data = await response.json();
+  finalizedInsight = data.insight;
+
+  function parseFormattedText(text) {
+    const segments = [];
+    let remaining = text, match;
+    const boldRegex = /\*\*(.*?)\*\*/;
+
+    while ((match = boldRegex.exec(remaining)) !== null) {
+      if (match.index > 0) segments.push({ text: remaining.slice(0, match.index), bold: false });
+      segments.push({ text: match[1], bold: true });
+      remaining = remaining.slice(match.index + match[0].length);
+    }
+    if (remaining) segments.push({ text: remaining, bold: false });
+    return segments;
+  }
+
+  async function displayAnimatedInsight(text) {
+    const segments = parseFormattedText(text);
+    const container = document.getElementById('insight');
+    container.innerHTML = '';
+    container.classList.add('show-insight');
+
+    for (const segment of segments) {
+      const span = document.createElement(segment.bold ? 'strong' : 'span');
+      container.appendChild(span);
+      for (let i = 0; i < segment.text.length; i++) {
+        span.textContent += segment.text[i];
+        await new Promise(res => setTimeout(res, 12));
+      }
+    }
+  }
+
+  setTimeout(() => {
+    displayAnimatedInsight(finalizedInsight);
+    document.getElementById("share-container").style.display = "block";
+  }, 300);
+}
+
+
+
+
+function cleanExpiredReadings() {
+  const readings = JSON.parse(localStorage.getItem("tarotReadings")) || {};
+  const now = Date.now();
+  const filtered = {};
+
+  for (const question in readings) {
+    if (now - readings[question].timestamp < 12 * 60 * 60 * 1000) {
+      filtered[question] = readings[question];
+    }
+  }
+
+  localStorage.setItem("tarotReadings", JSON.stringify(filtered));
+}
+
+
+cleanExpiredReadings();
+
+</script>
+
+<script>
+const canvas = document.getElementById('firefly-canvas');
+const ctx = canvas.getContext('2d');
+let fireflies = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Firefly {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.6;
+    this.vy = (Math.random() - 0.5) * 0.6;
+    this.radius = Math.random() * 1.5 + 1;
+    this.alpha = Math.random() * 0.5 + 0.3;
+    this.flicker = Math.random() * 0.05;
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.alpha += (Math.random() - 0.5) * this.flicker;
+
+    if (this.alpha > 1) this.alpha = 1;
+    if (this.alpha < 0.2) this.alpha = 0.2;
+
+    if (
+      this.x < 0 || this.x > canvas.width ||
+      this.y < 0 || this.y > canvas.height
+    ) {
+      this.reset();
+    }
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(255, 255, 200, ${this.alpha})`;
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function initFireflies(count = 40) { // ✨ Less for lighter effect
+  for (let i = 0; i < count; i++) {
+    fireflies.push(new Firefly());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  fireflies.forEach(f => {
+    f.update();
+    f.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+initFireflies(40);
+animate();
+</script>
+

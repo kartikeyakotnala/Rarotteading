@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot Reading</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-container label {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #8b5cf6;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .quick-access {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quick-access button {
+            background: linear-gradient(45deg, #8b5cf6, #d946ef);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .quick-access button:hover {
+            transform: scale(1.05);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #8b5cf6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #6d28d9;
+        }
+
+        #cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 150px;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+        }
+
+        .card-front img, .card-back img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        #insight {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+		
+		#cards { display: flex; justify-content: center; margin-top: 20px; }
+		.card { width: 150px; height: 250px; margin: 10px; perspective: 1000px; }
+		.card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1s; }
+		.card:hover .card-inner { transform: rotateY(180deg); }
+		.card-front, .card-back { width: 100%; height: 100%; position: absolute; backface-visibility: hidden; }
+		.card-front { background-color: #bbb; display: flex; align-items: center; justify-content: center; }
+		.card-back { background-color: #fff; transform: rotateY(180deg); }
+		img { width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+
+    <div class="toggle-container">
+        <label>🌙</label>
+        <label class="toggle-switch">
+            <input type="checkbox" onclick="toggleTheme()">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <h1>🌙 Tarot Reading ✨</h1>
+
+    <div class="quick-access">
+        <button onclick="setQuestion('What does my future hold?'); performReading();">🔮 What does my future hold?</button>
+        <button onclick="setQuestion('What should I focus on today?'); performReading();">🌟 What should I focus on today?</button>
+        <button onclick="setQuestion('How can I find love?'); performReading();">❤️ How can I find love?</button>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+        
+        function setQuestion(text) {
+            document.getElementById('question').value = text;
+        }
+    </script>
+
+	<input type="text" id="question" placeholder="Enter your question here...">
+	<button onclick="performReading()">Get Reading</button>
+	<div id="cards"></div>
+	<div id="insight"></div>
+
+	<script>
+	const cardImages = ['Cups01.jpg', 'Cups02.jpg', 'Cups03.jpg', 'Cups04.jpg', 'Cups05.jpg', 'Cups06.jpg', 'Cups07.jpg', 'Cups08.jpg', 'Cups09.jpg', 'Cups10.jpg', 'Cups11.jpg', 'Cups12.jpg', 'Cups13.jpg', 'Cups14.jpg', 'Death.jpg', 'Judgement.jpg', 'Justice.jpg', 'Pentacles01.jpg', 'Pentacles02.jpg', 'Pentacles03.jpg', 'Pentacles04.jpg', 'Pentacles05.jpg', 'Pentacles06.jpg', 'Pentacles07.jpg', 'Pentacles08.jpg', 'Pentacles09.jpg', 'Pentacles10.jpg', 'Pentacles11.jpg', 'Pentacles12.jpg', 'Pentacles13.jpg', 'Pentacles14.jpg', 'Strength.jpg', 'Swords01.jpg', 'Swords02.jpg', 'Swords03.jpg', 'Swords04.jpg', 'Swords05.jpg', 'Swords06.jpg', 'Swords07.jpg', 'Swords08.jpg', 'Swords09.jpg', 'Swords10.jpg', 'Swords11.jpg', 'Swords12.jpg', 'Swords13.jpg', 'Swords14.jpg', 'Temperance.jpg', 'TheChariot.jpg', 'TheDevil.jpg', 'TheEmperor.jpg', 'TheEmpress.jpg', 'TheFool.jpg', 'TheHangedMan.jpg', 'TheHermit.jpg', 'TheHierophant.jpg', 'TheHighPriestess.jpg', 'TheLovers.jpg', 'TheMagician.jpg', 'TheMoon.jpg', 'TheStar.jpg', 'TheSun.jpg', 'TheTower.jpg', 'TheWorld.jpg', 'Wands01.jpg', 'Wands02.jpg', 'Wands03.jpg', 'Wands04.jpg', 'Wands05.jpg', 'Wands06.jpg', 'Wands07.jpg', 'Wands08.jpg', 'Wands09.jpg', 'Wands10.jpg', 'Wands11.jpg', 'Wands12.jpg', 'Wands13.jpg', 'Wands14.jpg', 'WheelOfFortune.jpg']; // Replace with actual image filenames
+
+	function performReading() {
+	  const question = document.getElementById('question').value;
+	  if (!question) {
+		alert('Please enter a question.');
+		return;
+	  }
+
+	  const selectedCards = [];
+	  for (let i = 0; i < 3; i++) {
+		const randomIndex = Math.floor(Math.random() * cardImages.length);
+		selectedCards.push(cardImages[randomIndex]);
+	  }
+
+	  displayCards(selectedCards);
+	  fetchInsight(question, selectedCards);
+	}
+
+	function displayCards(cards) {
+	  const cardsContainer = document.getElementById('cards');
+	  cardsContainer.innerHTML = '';
+	  cards.forEach(card => {
+		const cardElement = document.createElement('div');
+		cardElement.className = 'card';
+		cardElement.innerHTML = `
+		  <div class="card-inner">
+			<div class="card-front">
+				<img src="images/card_back/card_back.png" alt="Tarot Card">
+			</div>
+			<div class="card-back">
+			  <img src="images/card_front/${card}" alt="Tarot Card">
+			</div>
+		  </div>
+		`;
+		cardsContainer.appendChild(cardElement);
+	  });
+	}
+
+	async function fetchInsight(question, cards) {
+	  const response = await fetch('/get-insight', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ question, cards })
+	  });
+	  const data = await response.json();
+	  document.getElementById('insight').innerText = data.insight;
+	}
+	</script>
+	</body>
+	</html>

@@ -832,7 +832,7 @@ function performReading() {
 
   displayCards(selectedCards);
   fetchInsight(question, selectedCards);
-
+  document.getElementById('insight_section').scrollIntoView({ behavior: 'smooth' });
   // Save with timestamp
   readings[question] = {
     cards: selectedCards,

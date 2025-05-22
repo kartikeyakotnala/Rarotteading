@@ -1,0 +1,17 @@
+{
+  "name": "tarot-reading-website",
+  "version": "1.0.0",
+  "description": "A tarot reading website with AI-powered insights",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.6.0",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
